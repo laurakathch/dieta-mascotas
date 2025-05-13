@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Generador de Dietas para Mascotas</title>
+</head>
+<body>
+  <h1>Dieta para Mascotas</h1>
+  <form id="dietaForm">
+    <label>Especie:
+      <select name="especie" required>
+        <option value="perro">Perro</option>
+        <option value="gato">Gato</option>
+      </select>
+    </label><br /><br />
+
+    <label>Peso (kg):
+      <input type="number" name="peso" step="0.1" min="0" required />
+    </label><br /><br />
+
+    <label>Actividad:
+      <select name="actividad" required>
+        <option value="baja">Baja</option>
+        <option value="media">Media</option>
+        <option value="alta">Alta</option>
+      </select>
+    </label><br /><br />
+
+    <button type="submit">Generar PDF</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("dietaForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        especie: form.especie.value,
+        peso: parseFloat(form.peso.value),
+        actividad: form.actividad.value
+      };
+
+      const response = await fetch("https://generador-dieta-backend.herokuapp.com/generate-diet", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        alert("Error al generar el PDF");
+        return;
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "dieta.pdf";
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
