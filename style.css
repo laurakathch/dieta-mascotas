@@ -1,4 +1,11 @@
 body {
+  background-image: url(https://github.com/laurakathch/dieta-mascotas/blob/main/cute-pet-collage-isolated_23-2150007407.avif);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body {
   font-family: Arial, sans-serif;
   background-color: #f7f9fc;
   color: #333;
