@@ -1,42 +1,56 @@
+/* Fondo general con imagen */
 body {
-  background-image: url(https://github.com/laurakathch/dieta-mascotas/blob/main/cute-pet-collage-isolated_23-2150007407.avif);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f9fc;
-  color: #333;
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-family: Arial, sans-serif;
+  background: url('https://raw.githubusercontent.com/laurakathch/dieta-mascotas/main/cute-pet-collage-isolated_23-2150007407.avif') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
 }
 
+/* Capa blanca translúcida encima del fondo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.85); /* ajusta la opacidad aquí */
+  z-index: 0;
+}
+
+/* Contenedor del contenido */
+form, h1 {
+  position: relative;
+  z-index: 1;
+}
+
+/* Estilo del título */
 h1 {
+  text-align: center;
   margin-top: 40px;
   color: #2c3e50;
 }
 
+/* Estilo del formulario */
 form {
   background-color: #ffffff;
   padding: 30px;
-  margin: 40px 0;
+  margin: 40px auto;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 90%;
-  max-width: 400px;
+  max-width: 450px;
 }
 
+/* Campos del formulario */
 label {
   display: block;
   margin-bottom: 15px;
   font-weight: bold;
 }
 
+input[type="text"],
 input[type="number"],
 select {
   width: 100%;
@@ -47,17 +61,10 @@ select {
   box-sizing: border-box;
 }
 
+/* Botón */
 button {
   background-color: #2980b9;
   color: white;
   border: none;
-  padding: 10px 20px;
-  margin-top: 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-}
+  padding
 
-button:hover {
-  background-color: #1f6391;
-}
